@@ -1019,6 +1019,7 @@ from route geometry returned "
 
   dimension: whyfrom {
     label: "Trip Origin Purpose"
+    hidden: yes
      case: {
 #       when: {
 #         sql: ${TABLE}.whyfrom = -9 ;;
@@ -1217,6 +1218,7 @@ from route geometry returned "
 
   dimension: WHYTRP1S  {
     label: "Trip Purpose Summary"
+    hidden: yes
     case: {
       when: {
         sql: ${TABLE}.WHYTRP1S  = 1 ;;

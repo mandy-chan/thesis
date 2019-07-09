@@ -1162,6 +1162,13 @@ Work"
     sql: ${TABLE}.R_AGE_IMP ;;
   }
 
+  dimension: age_tier {
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80]
+    style: integer
+    sql: ${r_age_imp} ;;
+  }
+
   dimension: r_hisp {
     label: "Hispanic or Latino Origin"
     case: {

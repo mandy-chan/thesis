@@ -82,8 +82,54 @@ view: households {
   }
 
   dimension: hhfaminc {
-    type: number
-    sql: ${TABLE}.HHFAMINC ;;
+    label: "Household income"
+    case: {
+      when: {
+        sql: ${TABLE}.hhfaminc = 1 ;;
+        label: "<$10,000"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 2 ;;
+        label: "$10,000 to $14,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 3 ;;
+        label: "$15,000 to $24,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 4 ;;
+        label: "$25,000 to $34,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 5 ;;
+        label: "$35,000 to $49,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 6 ;;
+        label: "$50,000 to $74,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 7 ;;
+        label: "$75,000 to $99,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 8 ;;
+        label: "$100,000 to $124,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 9 ;;
+        label: "$125,000 to $149,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 10 ;;
+        label: "$150,000 to $199,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc = 11 ;;
+        label: ">$200,000"
+      }
+      else: "null"
+    }
   }
 
   dimension: hhrelatd {
@@ -122,6 +168,8 @@ view: households {
   }
 
   dimension: houseid {
+    label: "House ID"
+    hidden: yes
     primary_key: yes
     type: number
     value_format_name: id
@@ -228,20 +276,20 @@ view: households {
     sql: ${TABLE}.TAXI ;;
   }
 
-  dimension: tdaydate {
-    type: number
-    sql: ${TABLE}.TDAYDATE ;;
-  }
+#   dimension: tdaydate {
+#     type: number
+#     sql: ${TABLE}.TDAYDATE ;;
+#   }
 
   dimension: train {
     type: number
     sql: ${TABLE}.TRAIN ;;
   }
 
-  dimension: travday {
-    type: number
-    sql: ${TABLE}.TRAVDAY ;;
-  }
+#   dimension: travday {
+#     type: number
+#     sql: ${TABLE}.TRAVDAY ;;
+#   }
 
   dimension: urban {
     type: number
