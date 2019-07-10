@@ -431,11 +431,13 @@ trip"
 #     type: number
 #     sql: ${TABLE}.SMPLSRCE ;;
 #   }
-#
-#   dimension: strttime {
-#     type: number
-#     sql: ${TABLE}.STRTTIME ;;
-#   }
+
+  dimension: strttime {
+    label: "Trip Start Time (HHMM)"
+#     type: date_time
+#     datatype: timestamp
+    sql: ${TABLE}.STRTTIME ;;
+  }
 
 #   dimension: tdaydate {
 #     label: "Travel Date (YYYYMM)"
@@ -445,7 +447,7 @@ trip"
 
   dimension: tdcaseid {
     primary_key: yes
-    label: "Unique Trip Identifier"
+    label: "Trip ID"
     description: "Unique identifier for every trip
 record in the file"
     type: number

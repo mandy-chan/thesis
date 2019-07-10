@@ -5,6 +5,12 @@ view: vehicles {
     sql: CONCAT(CAST(${TABLE}.HOUSEID AS STRING), '-', CAST(${TABLE}.PERSONID AS STRING)) ;;
   }
 
+  dimension: household_vehicle {
+    sql: CONCAT(CAST(${TABLE}.HOUSEID AS STRING), '-', CAST(${TABLE}.VEHID AS STRING)) ;;
+    primary_key: yes
+
+  }
+
   dimension: houseid {
     hidden: yes
     label: "House ID"
@@ -44,8 +50,15 @@ view: vehicles {
     label: "Annual Miles (Estimate)"
     description: "Best estimate of annual miles"
     sql: CASE
-    WHEN ${TABLE}.bestmile >= 0 THEN CAST(${TABLE}.bestmile AS STRING)
+    WHEN ${TABLE}.bestmile >= 0 THEN ${TABLE}.bestmile
     ELSE null END ;;
+  }
+
+  measure: average_bestmiles {
+    label: "Average of Miles Driven"
+    type: average
+    sql: ${bestmile} ;;
+    value_format: "0.00"
   }
 
 #   dimension: cdivmsar {
@@ -384,7 +397,7 @@ model year"
 
   dimension: vehid {
     label: "Vehicle ID"
-    primary_key: yes
+    hidden: yes
     type: number
     value_format_name: id
     sql: ${TABLE}.VEHID ;;

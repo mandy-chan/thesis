@@ -3,6 +3,7 @@ view: persons {
 
   dimension: person_of_household {
     sql: CONCAT(CAST(${TABLE}.HOUSEID AS STRING), '-', CAST(${TABLE}.PERSONID AS STRING)) ;;
+    primary_key: yes
   }
 
   dimension: respondent_of_household {
@@ -1040,7 +1041,6 @@ Week"
   }
 
   dimension: personid {
-    primary_key: yes
     hidden: yes
     label: "Person ID"
     type: number

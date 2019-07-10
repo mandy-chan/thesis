@@ -13,7 +13,9 @@ persist_with: mandys_thesis_default_datagroup
 explore: national_household_travel_data {
   view_name: households
   sql_always_where: ${households.hhfaminc} != "null" AND
-                    ${trips.whyto} != "null"
+                    ${trips.whyto} != "null" AND
+                    ${households.price} != "null" AND
+                    ${vehicles.fueltype} != "null"
 
 
   ;;

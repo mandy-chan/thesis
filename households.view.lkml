@@ -148,9 +148,43 @@ view: households {
   }
 
   dimension: hhstate {
+    label: "Household state"
     type: string
     sql: ${TABLE}.HHSTATE ;;
   }
+
+#   filter: state_count_picker {
+#     type: string
+#     suggest_dimension: households.hhstate
+#   }
+#
+#   measure: price_count {
+#     type: count
+#     sql:
+#       CASE
+#         WHEN {% condition state_count_picker %} ${TABLE}.price {% endcondition %}
+#         THEN 1
+#         ELSE 0
+#       END
+#       ;;
+#   }
+#
+#   filter: category_count_picker {
+#     type: string
+#     suggest_explore: order_items_warehouse
+#     suggest_dimension: products.category
+#   }
+#
+#   measure: category_count {
+#     type: sum
+#     sql:
+#     CASE
+#       WHEN {% condition category_count_picker %} ${products.category} {% endcondition %}
+#       THEN 1
+#       ELSE 0
+#     END
+#   ;;
+#   }
 
   dimension: hhstfips {
     type: number
@@ -201,15 +235,46 @@ view: households {
     sql: ${TABLE}.LIF_CYC ;;
   }
 
-  dimension: msacat {
-    type: number
-    sql: ${TABLE}.MSACAT ;;
+  dimension: msasize {
+    label: "Population size in a MSA"
+    description: "Population size category of the
+Metropolitan Statistical Area
+(MSA), from the 2010-2014
+five-year American Community
+Survey (ACS) API."
+    case: {
+      when: {
+        sql: ${TABLE}.msasize = 1;;
+        label: "In an MSA of Less than 250,000"
+      }
+      when: {
+        sql: ${TABLE}.msasize = 2;;
+        label: "In an MSA of 250,000 - 499,999"
+      }
+      when: {
+        sql: ${TABLE}.msasize = 3;;
+        label: "In an MSA of 500,000 - 999,999"
+      }
+      when: {
+        sql: ${TABLE}.msasize = 4;;
+        label: "In an MSA or CMSA of 1,000,000 - 2,999,999"
+      }
+      when: {
+        sql: ${TABLE}.msasize = 5;;
+        label: "In an MSA or CMSA of 3 million or more"
+      }
+      when: {
+        sql: ${TABLE}.msasize = 6;;
+        label: "Not in MSA or CMSA"
+      }
+    else: "null"
+    }
   }
 
-  dimension: msasize {
-    type: number
-    sql: ${TABLE}.MSASIZE ;;
-  }
+#   dimension: msacat {
+#     type: number
+#     sql: ${TABLE}.MSACAT ;;
+#   }
 
   dimension: numadlt {
     type: number
@@ -232,8 +297,30 @@ view: households {
   }
 
   dimension: price {
-    type: number
-    sql: ${TABLE}.PRICE ;;
+    label: "Gasoline prices affect travel"
+    case: {
+      when: {
+        sql: ${TABLE}.price = 1 ;;
+        label: "Strongly agree"
+      }
+      when: {
+        sql: ${TABLE}.price = 2 ;;
+        label: "Agree"
+      }
+      when: {
+        sql: ${TABLE}.price = 3 ;;
+        label: "Neither Agree or Disagree"
+      }
+      when: {
+        sql: ${TABLE}.price = 4 ;;
+        label: "Disagree"
+      }
+      when: {
+        sql: ${TABLE}.price = 5 ;;
+        label: "Strongly disagree"
+      }
+      else: "null"
+    }
   }
 
   dimension: ptrans {
@@ -297,8 +384,35 @@ view: households {
   }
 
   dimension: urbansize {
-    type: number
-    sql: ${TABLE}.URBANSIZE ;;
+    label: "Urban Size"
+    description: "Urban area size where home
+address is located"
+    case: {
+      when: {
+        sql: ${TABLE}.urbansize = 1 ;;
+        label: "50,000 - 199,999"
+      }
+      when: {
+        sql: ${TABLE}.urbansize = 2 ;;
+        label: "200,000 - 499,999"
+      }
+      when: {
+        sql: ${TABLE}.urbansize = 3 ;;
+        label: "500,000 - 999,999"
+      }
+      when: {
+        sql: ${TABLE}.urbansize = 4 ;;
+        label: "1 million or more without heavy rail"
+      }
+      when: {
+        sql: ${TABLE}.urbansize = 5 ;;
+        label: "1 million or more with heavy rail"
+      }
+      when: {
+        sql: ${TABLE}.urbansize = 6 ;;
+        label: "Not in an urbanized area"
+      }
+    }
   }
 
   dimension: urbrur {
