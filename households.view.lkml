@@ -143,6 +143,7 @@ view: households {
   }
 
   dimension: hhsize {
+    label: "Count of household members"
     type: number
     sql: ${TABLE}.HHSIZE ;;
   }

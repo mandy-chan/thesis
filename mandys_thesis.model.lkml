@@ -15,7 +15,12 @@ explore: national_household_travel_data {
   sql_always_where: ${households.hhfaminc} != "null" AND
                     ${trips.whyto} != "null" AND
                     ${households.price} != "null" AND
-                    ${vehicles.fueltype} != "null"
+                    ${vehicles.fueltype} != "null" AND
+                    ${persons.ptused} is not null AND
+                    ${trips.trpmiles} is not null AND
+                    ${trips.trptrans} != "null" AND
+                    ${trips.strttime} != "null" AND
+                    ${trips.endtime} != "null"
 
 
   ;;

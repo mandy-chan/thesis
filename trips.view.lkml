@@ -101,10 +101,107 @@ Station"
 #   }
 
   dimension: endtime {
-    label: "Trip End Time (HHMM)"
-    type: number
-    sql: ${TABLE}.ENDTIME ;;
+    label: "Trip End Time"
+    case: {
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 0 AND 59 ;;
+      label: "12 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 100 AND 159 ;;
+      label: "1 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 200 AND 259 ;;
+      label: "2 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 300 AND 359 ;;
+      label: "3 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 400 AND 459 ;;
+      label: "4 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 500 AND 559 ;;
+      label: "5 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 600 AND 659 ;;
+      label: "6 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 700 AND 759 ;;
+      label: "7 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 800 AND 859 ;;
+      label: "8 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 900 AND 959 ;;
+      label: "9 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1000 AND 1059 ;;
+      label: "10 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1100 AND 1159 ;;
+      label: "11 AM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1200 AND 1259 ;;
+      label: "12 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1300 AND 1359 ;;
+      label: "1 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1400 AND 1459 ;;
+      label: "2 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1500 AND 1559 ;;
+      label: "3 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1600 AND 1659 ;;
+      label: "4 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1700 AND 1759  ;;
+      label: "5 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1800 AND 1859 ;;
+      label: "6 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 1900 AND 1959 ;;
+      label: "7 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 2000 AND 2059 ;;
+      label: "8 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 2100 AND 2159 ;;
+      label: "9 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 2200 AND 2259 ;;
+      label: "10 PM"
+    }
+    when: {
+      sql: ${TABLE}.endtime BETWEEN 2300 AND 2359 ;;
+      label: "11 PM"
+    }
+    else: "null"
   }
+}
 
   dimension: gasprice {
     label: "Gas Price"
@@ -433,10 +530,106 @@ trip"
 #   }
 
   dimension: strttime {
-    label: "Trip Start Time (HHMM)"
-#     type: date_time
-#     datatype: timestamp
-    sql: ${TABLE}.STRTTIME ;;
+    label: "Trip Start Time"
+    case: {
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 0 AND 59 ;;
+        label: "12 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 100 AND 159 ;;
+        label: "1 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 200 AND 259 ;;
+        label: "2 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 300 AND 359 ;;
+        label: "3 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 400 AND 459 ;;
+        label: "4 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 500 AND 559 ;;
+        label: "5 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 600 AND 659 ;;
+        label: "6 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 700 AND 759 ;;
+        label: "7 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 800 AND 859 ;;
+        label: "8 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 900 AND 959 ;;
+        label: "9 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1000 AND 1059 ;;
+        label: "10 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1100 AND 1159 ;;
+        label: "11 AM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1200 AND 1259 ;;
+        label: "12 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1300 AND 1359 ;;
+        label: "1 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1400 AND 1459 ;;
+        label: "2 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1500 AND 1559 ;;
+        label: "3 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1600 AND 1659 ;;
+        label: "4 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1700 AND 1759  ;;
+        label: "5 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1800 AND 1859 ;;
+        label: "6 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 1900 AND 1959 ;;
+        label: "7 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 2000 AND 2059 ;;
+        label: "8 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 2100 AND 2159 ;;
+        label: "9 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 2200 AND 2259 ;;
+        label: "10 PM"
+      }
+      when: {
+        sql: ${TABLE}.strttime BETWEEN 2300 AND 2359 ;;
+        label: "11 PM"
+      }
+      else: "null"
+    }
   }
 
 #   dimension: tdaydate {
@@ -840,12 +1033,29 @@ Trip"
   }
 
   dimension: trpmiles {
-    label: "Trip Distance"
+    label: "Trip Miles"
     description: "Trip distance in miles, derived
-from route geometry returned "
+from route geometry returned"
     sql: CASE
-    WHEN ${TABLE}.trpmiles >= 0 THEN CAST(${TABLE}.trpmiles AS STRING)
+    WHEN ${TABLE}.trpmiles >= 0 THEN ${TABLE}.trpmiles
     ELSE null END ;;
+  }
+
+  dimension: trpmiles_tiered {
+    label: "Trip Miles, Tiered"
+    type: tier
+    tiers: [0, 5, 10, 15]
+    style: integer
+    sql: CASE
+    WHEN ${TABLE}.trpmiles_tiered >= 0 THEN ${TABLE}.trpmiles_tiered
+    ELSE null END ;;
+  }
+
+  measure: average_trpmiles {
+    label: "Average Trip Distance"
+    type: average
+    sql: ${trpmiles} ;;
+    value_format: "0.00"
   }
 
   dimension: trptrans {

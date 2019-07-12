@@ -601,13 +601,11 @@ view: persons {
 #     sql: ${TABLE}.FRSTHM17 ;;
 #   }
 
-  dimension: gcdwork {
-    label: "Distance between Home and Work"
-    description: "Minimum geodesic (Great Circle) distance between home and work"
-    sql: CASE
-    WHEN ${TABLE}.gcdwork >= 0 THEN CAST(${TABLE}.gcdwork AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: gcdwork {
+#     label: "Distance between Home and Work"
+#     description: "Minimum geodesic (Great Circle) distance between home and work"
+#     sql:${TABLE}.gcdwork  ;;
+#     }
 
   dimension: gt1_jblwk {
     label: "More Than One Job"
@@ -1135,10 +1133,17 @@ Week"
 #   }
 
   dimension: ptused {
-    label: "Count of Public Transit Usage"
+    label: "Count of public transit usage"
     sql: CASE
-    WHEN ${TABLE}.ptused >= 0 THEN CAST(${TABLE}.ptused AS STRING)
+    WHEN ${TABLE}.ptused >= 0 THEN ${TABLE}.ptused
     ELSE null END ;;
+  }
+
+  measure: total_public_transit {
+    label: "Total public transit usage"
+    type: sum
+    sql: ${ptused} ;;
+    drill_fields: [person_of_household, r_sex_imp, r_age_imp, households.hhfaminc]
   }
 
   dimension: pubtime {
