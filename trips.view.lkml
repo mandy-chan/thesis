@@ -100,6 +100,37 @@ Station"
 #     sql: ${TABLE}.EDUC ;;
 #   }
 
+  dimension: endtime_2 {
+    label: "Trip End Time (military)"
+    type: number
+    sql:
+    CASE WHEN ${TABLE}.endtime BETWEEN 0 AND 59 THEN 0
+         WHEN ${TABLE}.endtime BETWEEN 100 AND 159 THEN 1
+         WHEN ${TABLE}.endtime BETWEEN 200 AND 259 THEN 2
+         WHEN ${TABLE}.endtime BETWEEN 300 AND 359 THEN 3
+         WHEN ${TABLE}.endtime BETWEEN 400 AND 459 THEN 4
+         WHEN ${TABLE}.endtime BETWEEN 500 AND 559 THEN 5
+         WHEN ${TABLE}.endtime BETWEEN 600 AND 659 THEN 6
+         WHEN ${TABLE}.endtime BETWEEN 700 AND 759 THEN 7
+         WHEN ${TABLE}.endtime BETWEEN 800 AND 859 THEN 8
+         WHEN ${TABLE}.endtime BETWEEN 900 AND 959 THEN 9
+         WHEN ${TABLE}.endtime BETWEEN 1000 AND 1059 THEN 10
+         WHEN ${TABLE}.endtime BETWEEN 1100 AND 1159 THEN 11
+         WHEN ${TABLE}.endtime BETWEEN 1200 AND 1259 THEN 12
+         WHEN ${TABLE}.endtime BETWEEN 1300 AND 1359 THEN 13
+         WHEN ${TABLE}.endtime BETWEEN 1400 AND 1459 THEN 14
+         WHEN ${TABLE}.endtime BETWEEN 1500 AND 1559 THEN 15
+         WHEN ${TABLE}.endtime BETWEEN 1600 AND 1659 THEN 16
+         WHEN ${TABLE}.endtime BETWEEN 1700 AND 1759 THEN 17
+         WHEN ${TABLE}.endtime BETWEEN 1800 AND 1859 THEN 18
+         WHEN ${TABLE}.endtime BETWEEN 1900 AND 1959 THEN 19
+         WHEN ${TABLE}.endtime BETWEEN 2000 AND 2059 THEN 20
+         WHEN ${TABLE}.endtime BETWEEN 2100 AND 2159 THEN 21
+         WHEN ${TABLE}.endtime BETWEEN 2200 AND 2259 THEN 22
+         WHEN ${TABLE}.endtime BETWEEN 2300 AND 2359 THEN 23
+    ELSE null END ;;
+  }
+
   dimension: endtime {
     label: "Trip End Time"
     case: {
@@ -256,10 +287,11 @@ respondent's travel day"
 #     sql: ${TABLE}.HH_RACE ;;
 #   }
 
-#   dimension: hhfaminc {
-#     type: number
-#     sql: ${TABLE}.HHFAMINC ;;
-#   }
+  dimension: hhfaminc {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.HHFAMINC ;;
+  }
 
 #   dimension: hhmemdrv {
 #     label: "Drove on Trip"
@@ -279,10 +311,11 @@ respondent's travel day"
 #     sql: ${TABLE}.HHSIZE ;;
 #   }
 #
-#   dimension: hhstate {
-#     type: string
-#     sql: ${TABLE}.HHSTATE ;;
-#   }
+  dimension: hhstate {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.HHSTATE ;;
+  }
 #
 #   dimension: hhstfips {
 #     type: number
@@ -325,21 +358,21 @@ respondent's travel day"
 #     sql: ${TABLE}.LIF_CYC ;;
 #   }
 
-  dimension: loop_trip {
-    label: "Loop Trip"
-    description: "Trip origin and destination at
-identical location"
-    case: {
-      when: {
-        sql: ${TABLE}.loop_trip = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.loop_trip = 2 ;;
-        label: "No"
-      }
-    }
-  }
+#   dimension: loop_trip {
+#     label: "Loop Trip"
+#     description: "Trip origin and destination at
+# identical location"
+#     case: {
+#       when: {
+#         sql: ${TABLE}.loop_trip = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.loop_trip = 2 ;;
+#         label: "No"
+#       }
+#     }
+#   }
 
 #   dimension: msacat {
 #     type: number
@@ -364,21 +397,21 @@ identical location"
 #     sql: ${TABLE}.NUMADLT ;;
 #   }
 
-#   dimension: numontrp {
-#     label: "Number of People on Trips"
-#     description: "Number of people on trip
-# including respondent"
-#     sql: CASE
-#     WHEN ${TABLE}.numontrp = -9 THEN "Not ascertained"
-#     ELSE CAST(${TABLE}.numontrp AS STRING) END ;;
-#   }
-
-  dimension: numtrans {
-    label: "Count of Transfers"
+  dimension: numontrp {
+    label: "Number of People on Trips"
+    description: "Number of people on trip
+including respondent"
     sql: CASE
-    WHEN ${TABLE}.numtrans >= 0 THEN CAST(${TABLE}.numtrans AS STRING)
+    WHEN ${TABLE}.numontrp >= 0 THEN ${TABLE}.numontrp AS STRING
     ELSE null END ;;
   }
+
+#   dimension: numtrans {
+#     label: "Count of Transfers"
+#     sql: CASE
+#     WHEN ${TABLE}.numtrans >= 0 THEN CAST(${TABLE}.numtrans AS STRING)
+#     ELSE null END ;;
+#   }
 
 #   dimension: ontd_p1 {
 #     type: number
@@ -529,12 +562,43 @@ trip"
 #     sql: ${TABLE}.SMPLSRCE ;;
 #   }
 
+dimension: strttime_2 {
+  label: "Trip Start Time (military)"
+  type: number
+  sql:
+    CASE WHEN ${TABLE}.strttime BETWEEN 0 AND 59 THEN 0
+         WHEN ${TABLE}.strttime BETWEEN 100 AND 159 THEN 1
+         WHEN ${TABLE}.strttime BETWEEN 200 AND 259 THEN 2
+         WHEN ${TABLE}.strttime BETWEEN 300 AND 359 THEN 3
+         WHEN ${TABLE}.strttime BETWEEN 400 AND 459 THEN 4
+         WHEN ${TABLE}.strttime BETWEEN 500 AND 559 THEN 5
+         WHEN ${TABLE}.strttime BETWEEN 600 AND 659 THEN 6
+         WHEN ${TABLE}.strttime BETWEEN 700 AND 759 THEN 7
+         WHEN ${TABLE}.strttime BETWEEN 800 AND 859 THEN 8
+         WHEN ${TABLE}.strttime BETWEEN 900 AND 959 THEN 9
+         WHEN ${TABLE}.strttime BETWEEN 1000 AND 1059 THEN 10
+         WHEN ${TABLE}.strttime BETWEEN 1100 AND 1159 THEN 11
+         WHEN ${TABLE}.strttime BETWEEN 1200 AND 1259 THEN 12
+         WHEN ${TABLE}.strttime BETWEEN 1300 AND 1359 THEN 13
+         WHEN ${TABLE}.strttime BETWEEN 1400 AND 1459 THEN 14
+         WHEN ${TABLE}.strttime BETWEEN 1500 AND 1559 THEN 15
+         WHEN ${TABLE}.strttime BETWEEN 1600 AND 1659 THEN 16
+         WHEN ${TABLE}.strttime BETWEEN 1700 AND 1759 THEN 17
+         WHEN ${TABLE}.strttime BETWEEN 1800 AND 1859 THEN 18
+         WHEN ${TABLE}.strttime BETWEEN 1900 AND 1959 THEN 19
+         WHEN ${TABLE}.strttime BETWEEN 2000 AND 2059 THEN 20
+         WHEN ${TABLE}.strttime BETWEEN 2100 AND 2159 THEN 21
+         WHEN ${TABLE}.strttime BETWEEN 2200 AND 2259 THEN 22
+         WHEN ${TABLE}.strttime BETWEEN 2300 AND 2359 THEN 23
+    ELSE null END ;;
+}
+
   dimension: strttime {
     label: "Trip Start Time"
     case: {
       when: {
         sql: ${TABLE}.strttime BETWEEN 0 AND 59 ;;
-        label: "12 AM"
+        label: "0"
       }
       when: {
         sql: ${TABLE}.strttime BETWEEN 100 AND 159 ;;
@@ -830,8 +894,36 @@ public transit?"
 
   dimension: travday {
     label: "Weekday"
-    type: number
-    sql: ${TABLE}.TRAVDAY ;;
+    case: {
+      when: {
+        sql: ${TABLE}.travday = 1 ;;
+        label: "Sunday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 2 ;;
+        label: "Monday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 3 ;;
+        label: "Tuesday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 4 ;;
+        label: "Wednesday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 5 ;;
+        label: "Thursday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 6 ;;
+        label: "Friday"
+      }
+      when: {
+        sql: ${TABLE}.travday = 7 ;;
+        label: "Saturday"
+      }
+    }
   }
 
   dimension: tregr_bus {
@@ -984,6 +1076,12 @@ public transit?"
     }
   }
 
+  dimension: cspv {
+    label: "Car/SUV/Pickup/Van"
+    type: yesno
+    sql:  ${trptrans} = 'Car' OR ${trptrans} = 'SUV' OR ${trptrans} = 'Pickup truck' OR ${trptrans} = 'Van' ;;
+  }
+
   dimension: tregrtm {
     label: "Time to Destination From Transit"
     description: "Time to Destination from
@@ -1036,6 +1134,7 @@ Trip"
     label: "Trip Miles"
     description: "Trip distance in miles, derived
 from route geometry returned"
+    type:  number
     sql: CASE
     WHEN ${TABLE}.trpmiles >= 0 THEN ${TABLE}.trpmiles
     ELSE null END ;;
@@ -1044,18 +1143,26 @@ from route geometry returned"
   dimension: trpmiles_tiered {
     label: "Trip Miles, Tiered"
     type: tier
-    tiers: [0, 5, 10, 15]
-    style: integer
+    tiers: [0, 0.5, 1, 2, 3, 4, 5]
+    style: interval
     sql: CASE
-    WHEN ${TABLE}.trpmiles_tiered >= 0 THEN ${TABLE}.trpmiles_tiered
+    WHEN ${TABLE}.trpmiles >= 0 THEN ${TABLE}.trpmiles
     ELSE null END ;;
+    value_format: "0.00"
   }
 
-  measure: average_trpmiles {
-    label: "Average Trip Distance"
+   dimension: mph {
+    label: "Speed (miles per hour)"
+    type: number
+    sql: (${trpmiles}/(${trvlcmin}/60));;
+    value_format: "0"
+  }
+
+  measure: average_mph {
+    label: "Average Speed"
     type: average
-    sql: ${trpmiles} ;;
-    value_format: "0.00"
+    sql: ${mph} ;;
+    value_format: "0.0"
   }
 
   dimension: trptrans {
@@ -1165,8 +1272,9 @@ from route geometry returned"
   dimension: trvlcmin {
     label: "Trip Duration"
     description: "Trip Duration in Minutes"
+    type: number
     sql: CASE
-    WHEN ${TABLE}.trvlmin >= 0 THEN CAST(${TABLE}.trvlmin AS STRING)
+    WHEN ${TABLE}.trvlcmin >= 0 THEN ${TABLE}.trvlcmin
     ELSE null END ;;
   }
 
@@ -1330,6 +1438,7 @@ from route geometry returned"
   }
 
   dimension: whyto {
+    hidden: yes
     label: "Trip Destination Purpose"
     case: {
 #       when: {
@@ -1430,7 +1539,6 @@ from route geometry returned"
 
   dimension: WHYTRP1S  {
     label: "Trip Purpose Summary"
-    hidden: yes
     case: {
       when: {
         sql: ${TABLE}.WHYTRP1S  = 1 ;;

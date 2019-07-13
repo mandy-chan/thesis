@@ -8,7 +8,7 @@ view: vehicles {
   dimension: household_vehicle {
     sql: CONCAT(CAST(${TABLE}.HOUSEID AS STRING), '-', CAST(${TABLE}.VEHID AS STRING)) ;;
     primary_key: yes
-
+    hidden: yes
   }
 
   dimension: houseid {

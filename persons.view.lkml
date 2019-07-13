@@ -120,16 +120,16 @@ view: persons {
 #   }
 #
 
-  dimension: bike4ex {
-    label: "Bike Trips for Exercise"
-    description: "Count of Bike Trips for Exercise"
-    sql: CASE
-            WHEN ${TABLE}.bike4ex >= 0 THEN CAST(${TABLE}.bike4ex AS STRING)
-            ELSE null END ;;
-  }
+#   dimension: bike4ex {
+#     label: "Bike Trips for Exercise"
+#     description: "Count of Bike Trips for Exercise"
+#     sql: CASE
+#             WHEN ${TABLE}.bike4ex >= 0 THEN CAST(${TABLE}.bike4ex AS STRING)
+#             ELSE null END ;;
+#   }
 
   dimension: bike_dfr {
-    label: "Not Biking: Infrastracture"
+    label: "Not Biking More: Infrastracture"
     description: "Reason for Not Biking More: Infrastructure"
     case: {
 #       when: {
@@ -174,7 +174,7 @@ view: persons {
   }
 
   dimension: bike_gkp {
-    label: "Not Biking: Safety"
+    label: "Not Biking More: Safety"
     description: "Reason for Not Biking More: Safety"
     case: {
 #       when: {
@@ -226,34 +226,34 @@ view: persons {
          ELSE null END ;;
   }
 
-  dimension: borninus {
-    label: "Born in USA"
-    description: "Born in United States"
-    case: {
+#   dimension: borninus {
+#     label: "Born in USA"
+#     description: "Born in United States"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.borninus = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.borninus = -8 ;;
+# #         label: "I don't know"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.borninus = -7 ;;
+# #         label: "I prefer not to answer"
+# #       }
 #       when: {
-#         sql: ${TABLE}.borninus = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.borninus = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.borninus = -8 ;;
-#         label: "I don't know"
+#         sql: ${TABLE}.borninus = 2 ;;
+#         label: "No"
 #       }
-#       when: {
-#         sql: ${TABLE}.borninus = -7 ;;
-#         label: "I prefer not to answer"
-#       }
-      when: {
-        sql: ${TABLE}.borninus = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.borninus = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-  }
-}
+#       else: "null"
+#
+#   }
+# }
 
   dimension: carrode {
     label: "People in Vehicle to Work"
@@ -298,188 +298,188 @@ view: persons {
     sql: ${TABLE}.CNTTDTR ;;
   }
 
-  dimension: condnigh {
-    label: "Condition: Limited Driving to Daytime"
-    description: "Medical Condition Results in Limiting Driving to Daytime"
-    case: {
+#   dimension: condnigh {
+#     label: "Condition: Limited Driving to Daytime"
+#     description: "Medical Condition Results in Limiting Driving to Daytime"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condnigh = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condnigh = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.condnigh = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.condnigh = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.condnigh = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.condnigh = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.condnigh = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condnigh = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condpub {
-    label: "Condition: Limited Use of Bus/Subway"
-    description: "Medical Condition Results in Using Bus or Subway Less Frequently"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condpub {
+#     label: "Condition: Limited Use of Bus/Subway"
+#     description: "Medical Condition Results in Using Bus or Subway Less Frequently"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condpub = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condpub = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.condpub = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.condpub = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.condpub = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condpub = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condride {
-    label: "Condition: Asking Others for Rides"
-    description: "Medical Condition Results in Asking Others for Rides"
-    case: {
-#       when: {
-#         sql: ${TABLE}.condride = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.condpub = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.condride = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.condpub = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.condride = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condride = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condrive {
-    label: "Condition: Giving Up Driving"
-    description: "Medical Condition Results in Giving up Driving"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condride {
+#     label: "Condition: Asking Others for Rides"
+#     description: "Medical Condition Results in Asking Others for Rides"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condride = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condride = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.condrive = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.condrive = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.condrive = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condrive = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condspec {
-    label: "Condition: Special Transportation Services"
-    description: "Medical Condition Results in Using Special Transportation Services"
-    case: {
-#       when: {
-#         sql: ${TABLE}.condspec = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.condride = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.condspec = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.condride = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.condspec = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condspec = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condtax {
-    label: "Condition: Using Reduced Fare Taxi"
-    description: "Medical Condition Results in Using a Reduced Fare Taxi"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condrive {
+#     label: "Condition: Giving Up Driving"
+#     description: "Medical Condition Results in Giving up Driving"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condrive = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condrive = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.condtax = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.condtax = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.condtax = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condtax = 2 ;;
-        label: "No"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: condtrav {
-    label: "Condition: Reduced Day-to-Day Travel"
-    description: "Medical Condition Results in Reduced Day-to-Day Travel"
-    case: {
-#       when: {
-#         sql: ${TABLE}.condtrav = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.condrive = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.condtrav = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.condrive = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.condtrav = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.condtrav = 2 ;;
-        label: "No"
-      }
-      else: "null"
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condspec {
+#     label: "Condition: Special Transportation Services"
+#     description: "Medical Condition Results in Using Special Transportation Services"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condspec = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condspec = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.condspec = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.condspec = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condtax {
+#     label: "Condition: Using Reduced Fare Taxi"
+#     description: "Medical Condition Results in Using a Reduced Fare Taxi"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condtax = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condtax = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.condtax = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.condtax = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: condtrav {
+#     label: "Condition: Reduced Day-to-Day Travel"
+#     description: "Medical Condition Results in Reduced Day-to-Day Travel"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.condtrav = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.condtrav = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.condtrav = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.condtrav = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#
+#     }
+#   }
 
-    }
-  }
-
-  dimension: deliver {
-    label: "Online Purchase in Last 30 Days"
-    description: "Count of Times Purchased Online for Delivery in Last 30 Days"
-    sql: CASE
-    WHEN ${TABLE}.deliver >= 0 THEN CAST(${TABLE}.deliver AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: deliver {
+#     label: "Online Purchase in Last 30 Days"
+#     description: "Count of Times Purchased Online for Delivery in Last 30 Days"
+#     sql: CASE
+#     WHEN ${TABLE}.deliver >= 0 THEN CAST(${TABLE}.deliver AS STRING)
+#     ELSE null END ;;
+#   }
 
 #   dimension: diary {
 #     label: "Completed Travel Diary"
@@ -795,56 +795,56 @@ view: persons {
 #     sql: ${TABLE}.LIF_CYC ;;
 #   }
 
-  dimension: lpact {
-    label: "Count of Light/Moderate Physical Activity"
-    description: "Count of Times of Light or Moderate Physical Activity in Past Week"
-    sql: CASE
-    WHEN ${TABLE}.lpact >= 0 THEN CAST(${TABLE}.lpact AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: lpact {
+#     label: "Count of Light/Moderate Physical Activity"
+#     description: "Count of Times of Light or Moderate Physical Activity in Past Week"
+#     sql: CASE
+#     WHEN ${TABLE}.lpact >= 0 THEN CAST(${TABLE}.lpact AS STRING)
+#     ELSE null END ;;
+#   }
 
-  dimension: lsttrday17 {
-    label: "Last Trip Before Travel Day"
-    case: {
+#   dimension: lsttrday17 {
+#     label: "Last Trip Before Travel Day"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.lsttrday17 = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.lsttrday17 = -8 ;;
+# #         label: "I don't know"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.lsttrday17 = -7 ;;
+# #         label: "I prefer not to answer"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.lsttrday17 = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.lsttrday17 = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.lsttrday17 = 1 ;;
+#         label: "The day before"
 #       }
 #       when: {
-#         sql: ${TABLE}.lsttrday17 = -8 ;;
-#         label: "I don't know"
+#         sql: ${TABLE}.lsttrday17 = 2 ;;
+#         label: "A few days before"
 #       }
 #       when: {
-#         sql: ${TABLE}.lsttrday17 = -7 ;;
-#         label: "I prefer not to answer"
+#         sql: ${TABLE}.lsttrday17 = 3 ;;
+#         label: "A week before"
 #       }
 #       when: {
-#         sql: ${TABLE}.lsttrday17 = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.lsttrday17 = 4 ;;
+#         label: "More than a week before but within a month"
 #       }
-      when: {
-        sql: ${TABLE}.lsttrday17 = 1 ;;
-        label: "The day before"
-      }
-      when: {
-        sql: ${TABLE}.lsttrday17 = 2 ;;
-        label: "A few days before"
-      }
-      when: {
-        sql: ${TABLE}.lsttrday17 = 3 ;;
-        label: "A week before"
-      }
-      when: {
-        sql: ${TABLE}.lsttrday17 = 4 ;;
-        label: "More than a week before but within a month"
-      }
-      when: {
-        sql: ${TABLE}.lsttrday17 = 5 ;;
-        label: "More than a month before"
-      }
-      else: "null"
-    }
-  }
+#       when: {
+#         sql: ${TABLE}.lsttrday17 = 5 ;;
+#         label: "More than a month before"
+#       }
+#       else: "null"
+#     }
+#   }
 
   dimension: mcused {
     label: "Motorcycle or Moped Trips"
@@ -881,36 +881,36 @@ view: persons {
     }
   }
 
-  dimension: medcond6 {
-    label: "Medical Condition Duration"
-    case: {
+#   dimension: medcond6 {
+#     label: "Medical Condition Duration"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.medcond6 = -8 ;;
+# #         label: "I don't know"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.medcond6 = -7 ;;
+# #         label: "I prefer not to answer"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.medcond6 = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.medcond6 = -8 ;;
-#         label: "I don't know"
+#         sql: ${TABLE}.medcond6 = 1 ;;
+#         label: "<= 6 months"
 #       }
 #       when: {
-#         sql: ${TABLE}.medcond6 = -7 ;;
-#         label: "I prefer not to answer"
+#         sql: ${TABLE}.medcond6 = 2 ;;
+#         label: ">= 6 months"
 #       }
 #       when: {
-#         sql: ${TABLE}.medcond6 = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.medcond6 = 3 ;;
+#         label: "Entire life"
 #       }
-      when: {
-        sql: ${TABLE}.medcond6 = 1 ;;
-        label: "<= 6 months"
-      }
-      when: {
-        sql: ${TABLE}.medcond6 = 2 ;;
-        label: ">= 6 months"
-      }
-      when: {
-        sql: ${TABLE}.medcond6 = 3 ;;
-        label: "Entire life"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
 
 #   dimension: msacat {
 #     type: number
@@ -1044,40 +1044,40 @@ Week"
     type: number
     sql: ${TABLE}.PERSONID ;;
   }
-
-  dimension: phyact {
-    label: "Level of Physical Activity"
-    case: {
+#
+#   dimension: phyact {
+#     label: "Level of Physical Activity"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.phyact = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.phyact = -8 ;;
+# #         label: "I don't know"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.phyact = -7 ;;
+# #         label: "I prefer not to answer"
+# #       }
 #       when: {
-#         sql: ${TABLE}.phyact = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.phyact = 1 ;;
+#         label: "Rarely or never does physical activity"
 #       }
 #       when: {
-#         sql: ${TABLE}.phyact = -8 ;;
-#         label: "I don't know"
+#         sql: ${TABLE}.phyact = 2 ;;
+#         label: "Some light or moderate physical activity"
 #       }
 #       when: {
-#         sql: ${TABLE}.phyact = -7 ;;
-#         label: "I prefer not to answer"
+#         sql: ${TABLE}.phyact = 3 ;;
+#         label: "Some vigorous physical activity"
 #       }
-      when: {
-        sql: ${TABLE}.phyact = 1 ;;
-        label: "Rarely or never does physical activity"
-      }
-      when: {
-        sql: ${TABLE}.phyact = 2 ;;
-        label: "Some light or moderate physical activity"
-      }
-      when: {
-        sql: ${TABLE}.phyact = 3 ;;
-        label: "Some vigorous physical activity"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
 
   dimension: prmact {
-    label: "Activity in Previous Week"
+    label: "Primary Activity in last week"
     description: "Primary Activity in Previous
 Week"
     case: {
@@ -1139,12 +1139,12 @@ Week"
     ELSE null END ;;
   }
 
-  measure: total_public_transit {
-    label: "Total public transit usage"
-    type: sum
-    sql: ${ptused} ;;
-    drill_fields: [person_of_household, r_sex_imp, r_age_imp, households.hhfaminc]
-  }
+#   measure: total_public_transit {
+#     label: "Total public transit usage"
+#     type: sum
+#     sql: ${ptused} ;;
+#     drill_fields: [person_of_household, r_sex_imp, r_age_imp, households.hhfaminc]
+#   }
 
   dimension: pubtime {
     label: "Minutes Transfer to Work"
@@ -1162,7 +1162,7 @@ Work"
 #   }
 
   dimension: r_age_imp {
-    label: "Age (Imputed)"
+    label: "Age"
     type: number
     sql: ${TABLE}.R_AGE_IMP ;;
   }
@@ -1253,7 +1253,7 @@ Work"
 #   }
 
   dimension: r_sex_imp {
-    label: "Gender (imputed)"
+    label: "Gender"
     case: {
       when: {
         sql: ${TABLE}.r_sex_imp = 1 ;;
@@ -1586,207 +1586,207 @@ Date, derived"
     }
   }
 
-  dimension: vpact {
-    label: "Vigorous Physical Activity in Past Week"
-    description: "Count of Times of Vigorous
-Physical Activity in Past Week"
-    sql: CASE
-    WHEN ${TABLE}.vpact >= 0 THEN CAST(${TABLE}.vpact AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: vpact {
+#     label: "Vigorous Physical Activity in Past Week"
+#     description: "Count of Times of Vigorous
+# Physical Activity in Past Week"
+#     sql: CASE
+#     WHEN ${TABLE}.vpact >= 0 THEN CAST(${TABLE}.vpact AS STRING)
+#     ELSE null END ;;
+#   }
 
-
-  dimension: w_cane {
-    label: "Cane Usage"
-    description: "Medical Device Used: Cane"
-    case: {
+#
+#   dimension: w_cane {
+#     label: "Cane Usage"
+#     description: "Medical Device Used: Cane"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_cane = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_cane = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_cane = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.w_cane = 1 ;;
+#         label: "Cane"
 #       }
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_chair {
+#     label: "Wheelchair Usage"
+#     description: "Medical Device Used:
+# Wheelchair"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_chair = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_chair = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_cane = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.w_chair = 7 ;;
+#         label: "Manual Wheelchair"
 #       }
-      when: {
-        sql: ${TABLE}.w_cane = 1 ;;
-        label: "Cane"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_chair {
-    label: "Wheelchair Usage"
-    description: "Medical Device Used:
-Wheelchair"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_crutch {
+#     label: "Crutches Usage"
+#     description: "Medical Device Used:
+# Crutches"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_crutch = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_crutch = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_chair = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.w_crutch = 5 ;;
+#         label: "Crutches"
 #       }
+#     else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_dog {
+#     label: "Dog Assistance Usage"
+#     description: "Medical Device Used: Dog
+# Assistance"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_dog = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_dog = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_chair = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.w_dog = 4 ;;
+#         label: "Seeing-eye dog or other K-9 assistance"
 #       }
-      when: {
-        sql: ${TABLE}.w_chair = 7 ;;
-        label: "Manual Wheelchair"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_crutch {
-    label: "Crutches Usage"
-    description: "Medical Device Used:
-Crutches"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_mtrchr {
+#     label: "Motorized Wheelchair Usage"
+#     description: "Medical Device Used:
+# Motorized Wheelchair"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_mtrchr = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_mtrchr = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_crutch = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.w_mtrchr = 8 ;;
+#         label: "Motorized wheelchair"
 #       }
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_none {
+#     label: "No Medical Device Used"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_none = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_none = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_crutch = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.w_none = 0 ;;
+#         label: "No medical device used"
 #       }
-      when: {
-        sql: ${TABLE}.w_crutch = 5 ;;
-        label: "Crutches"
-      }
-    else: "null"
-
-    }
-  }
-
-  dimension: w_dog {
-    label: "Dog Assistance Usage"
-    description: "Medical Device Used: Dog
-Assistance"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_scootr {
+#     label: "Motorized Scooter Usage"
+#     description: "Medical Device Used:
+# Motorized Scooter"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_scootr = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_scootr = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_dog = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.w_scootr = 6 ;;
+#         label: "Motorized Scooter"
 #       }
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: w_whcane {
+#     label: "White Cane Usage"
+#     description: "Medical Device Used: White Cane"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_whcane = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_whcane = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_dog = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.w_whcane = 3 ;;
+#         label: "White cane"
 #       }
-      when: {
-        sql: ${TABLE}.w_dog = 4 ;;
-        label: "Seeing-eye dog or other K-9 assistance"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_mtrchr {
-    label: "Motorized Wheelchair Usage"
-    description: "Medical Device Used:
-Motorized Wheelchair"
-    case: {
+#       else: "null"
+#
+#     }
+#   }
+#
+#   dimension: w_wlkr {
+#     label: "Walker Usage"
+#     description: "Medical Device Used: Walker"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.w_wlkr = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.w_wlkr = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.w_mtrchr = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.w_wlkr = 2;;
+#         label: "Walker"
 #       }
-#       when: {
-#         sql: ${TABLE}.w_mtrchr = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.w_mtrchr = 8 ;;
-        label: "Motorized wheelchair"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_none {
-    label: "No Medical Device Used"
-    case: {
-#       when: {
-#         sql: ${TABLE}.w_none = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.w_none = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.w_none = 0 ;;
-        label: "No medical device used"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_scootr {
-    label: "Motorized Scooter Usage"
-    description: "Medical Device Used:
-Motorized Scooter"
-    case: {
-#       when: {
-#         sql: ${TABLE}.w_scootr = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.w_scootr = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.w_scootr = 6 ;;
-        label: "Motorized Scooter"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: w_whcane {
-    label: "White Cane Usage"
-    description: "Medical Device Used: White Cane"
-    case: {
-#       when: {
-#         sql: ${TABLE}.w_whcane = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.w_whcane = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.w_whcane = 3 ;;
-        label: "White cane"
-      }
-      else: "null"
-
-    }
-  }
-
-  dimension: w_wlkr {
-    label: "Walker Usage"
-    description: "Medical Device Used: Walker"
-    case: {
-#       when: {
-#         sql: ${TABLE}.w_wlkr = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.w_wlkr = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.w_wlkr = 2;;
-        label: "Walker"
-      }
-      else: "null"
-
-    }
-  }
+#       else: "null"
+#
+#     }
+#   }
 
   dimension: walk4_ex {
     label: "Walk Trips For Exercise"
@@ -1833,7 +1833,7 @@ Infrastructure"
       }
       when: {
         sql: ${TABLE}.walk_def = 6 ;;
-        label: "Poor sidewalk_defalks and no nearby parks"
+        label: "Poor sidewalks and no nearby parks"
       }
       when: {
         sql: ${TABLE}.walk_def = 7 ;;
@@ -2168,13 +2168,13 @@ Vehicles"
     ELSE null END ;;
   }
 
-  dimension: yrtous {
-    label: "Arrival in USA"
-    description: "Year of Arrival in United States"
-    sql: CASE
-    WHEN ${TABLE}.yrtous >= 0 THEN CAST(${TABLE}.yrtous AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: yrtous {
+#     label: "Arrival in USA"
+#     description: "Year of Arrival in United States"
+#     sql: CASE
+#     WHEN ${TABLE}.yrtous >= 0 THEN CAST(${TABLE}.yrtous AS STRING)
+#     ELSE null END ;;
+#   }
 
   measure: count {
     type: count

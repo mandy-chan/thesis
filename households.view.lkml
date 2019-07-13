@@ -82,10 +82,11 @@ view: households {
   }
 
   dimension: hhfaminc {
+    hidden: yes
     label: "Household income"
     case: {
       when: {
-        sql: ${TABLE}.hhfaminc = 1 ;;
+        sql: ${TABLE}.hhfaminc = 1  ;;
         label: "<$10,000"
       }
       when: {
@@ -132,6 +133,33 @@ view: households {
     }
   }
 
+  dimension: hhfaminc_2 {
+    label: "Household income"
+    case: {
+      when: {
+        sql: ${TABLE}.hhfaminc BETWEEN 1 AND 3  ;;
+        label: "<$24,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc BETWEEN 4 AND 5 ;;
+        label: "$25,000 to $49,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc BETWEEN 6 AND 7 ;;
+        label: "$50,000 to $99,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc BETWEEN 8 AND 9 ;;
+        label: "$100,000 to $149,999"
+      }
+      when: {
+        sql: ${TABLE}.hhfaminc BETWEEN 10 AND 11;;
+        label: ">$150,000"
+      }
+      else: "null"
+    }
+  }
+
   dimension: hhrelatd {
     type: number
     sql: ${TABLE}.HHRELATD ;;
@@ -151,41 +179,9 @@ view: households {
   dimension: hhstate {
     label: "Household state"
     type: string
+    map_layer_name: us_states
     sql: ${TABLE}.HHSTATE ;;
   }
-
-#   filter: state_count_picker {
-#     type: string
-#     suggest_dimension: households.hhstate
-#   }
-#
-#   measure: price_count {
-#     type: count
-#     sql:
-#       CASE
-#         WHEN {% condition state_count_picker %} ${TABLE}.price {% endcondition %}
-#         THEN 1
-#         ELSE 0
-#       END
-#       ;;
-#   }
-#
-#   filter: category_count_picker {
-#     type: string
-#     suggest_explore: order_items_warehouse
-#     suggest_dimension: products.category
-#   }
-#
-#   measure: category_count {
-#     type: sum
-#     sql:
-#     CASE
-#       WHEN {% condition category_count_picker %} ${products.category} {% endcondition %}
-#       THEN 1
-#       ELSE 0
-#     END
-#   ;;
-#   }
 
   dimension: hhstfips {
     type: number
