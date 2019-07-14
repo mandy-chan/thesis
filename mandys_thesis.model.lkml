@@ -13,6 +13,7 @@ persist_with: mandys_thesis_default_datagroup
 
 explore: national_household_travel_data {
   view_name: households
+    sql_always_where: ${trips.trvlcmin} > 0 ;;
 #   sql_always_where: ${households.hhfaminc} != "null" AND
 #                     ${trips.whyto} != "null" AND
 #                     ${households.price} != "null" AND
@@ -57,6 +58,12 @@ explore: national_household_travel_data {
     type: inner
     relationship: one_to_one
     sql_on: ${households.houseid} = ${derived_person_cohort.h_id};;
+  }
+
+  join: sorting_by_pivot {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${trips.tdcaseid} = ${sorting_by_pivot.trip_id} ;;
   }
 
 }

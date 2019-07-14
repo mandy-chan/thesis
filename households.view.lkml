@@ -193,10 +193,10 @@ view: households {
     sql: ${TABLE}.HHVEHCNT ;;
   }
 
-  dimension: homeown {
-    type: number
-    sql: ${TABLE}.HOMEOWN ;;
-  }
+#   dimension: homeown {
+#     type: number
+#     sql: ${TABLE}.HOMEOWN ;;
+#   }
 
   dimension: houseid {
     label: "House ID"

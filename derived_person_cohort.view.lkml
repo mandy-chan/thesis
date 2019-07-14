@@ -29,7 +29,8 @@ filter: filter_travday {
 }
 
 filter: filter_trptrans {
-  description: "Trip Name to filter cohort - filter on all users that purchased this trip"
+  label: "Filtering on Trip Mode"
+  description: "Trip Mode to filter cohort: filtering trips that use this type of transportation"
   type: number
   suggest_dimension: trips.trptrans
 }

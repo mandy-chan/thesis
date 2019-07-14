@@ -19,8 +19,8 @@ view: average_speed_ndt {
   }
   dimension: tiered_mph {
     type: tier
-    tiers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    style: integer
-    sql: ${average_mph} ;;
+    tiers: [0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    style: interval
+    sql: ${average_mph};;
   }
 }

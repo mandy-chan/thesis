@@ -2041,10 +2041,13 @@ Home in Last Month"
 
   dimension: wrktime {
     label: "Arrival Time at Work"
-    sql: CASE
-    WHEN ${TABLE}.wrktime >= 0 THEN CAST(${TABLE}.wrktime AS STRING)
-    ELSE null END ;;
+    sql: CASE WHEN ${TABLE}.wrktime != "-9" AND
+                    ${TABLE}.wrktime != "-8" AND
+                    ${TABLE}.wrktime != "-7" AND
+                    ${TABLE}.wrktime != "-1"
+               THEN ${TABLE}.wrktime ELSE "null" END  ;;
   }
+
 
   dimension: wrktrans {
     label: "Mode to Work"

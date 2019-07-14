@@ -734,163 +734,163 @@ record in the file"
     }
   }
 
-  dimension: tracc_bus {
-    label: "Bus to Public Transit"
-    description: "Bus as mode used to get to
-public transit?"
-    case: {
+#   dimension: tracc_bus {
+#     label: "Bus to Public Transit"
+#     description: "Bus as mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_bus = -9 ;;
+# #         label: "Not ascertained"
+# #         }
+# #       when: {
+# #         sql: ${TABLE}.tracc_bus = -1 ;;
+# #         label: "Appropriate skip"
+# #         }
 #       when: {
-#         sql: ${TABLE}.tracc_bus = -9 ;;
-#         label: "Not ascertained"
-#         }
+#         sql: ${TABLE}.tracc_bus = 1 ;;
+#         label: "Yes"
+#       }
 #       when: {
-#         sql: ${TABLE}.tracc_bus = -1 ;;
-#         label: "Appropriate skip"
-#         }
-      when: {
-        sql: ${TABLE}.tracc_bus = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_bus = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#         sql: ${TABLE}.tracc_bus = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: tracc_crl {
+#     label: "Rail to Public Transit"
+#     description: "Rail as mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_crl = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tracc_crl = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.tracc_crl = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.tracc_crl = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#     }
+#   }
 
-  dimension: tracc_crl {
-    label: "Rail to Public Transit"
-    description: "Rail as mode used to get to
-public transit?"
-    case: {
+#   dimension: tracc_oth {
+#     label: "Other Mode to Public Transit"
+#     description: "Other mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_oth = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tracc_oth = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tracc_crl = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tracc_oth = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tracc_crl = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tracc_oth = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tracc_crl = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_crl = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
 
-  dimension: tracc_oth {
-    label: "Other Mode to Public Transit"
-    description: "Other mode used to get to
-public transit?"
-    case: {
+#   dimension: tracc_pov {
+#     label: "POV to Public Transit"
+#     description: "Privately Owned Vehicle as mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_pov = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tracc_pov = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tracc_oth = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tracc_pov = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tracc_oth = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tracc_pov = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tracc_oth = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_oth = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: tracc_sub {
+#     label: "Subway to Public Transit"
+#     description: "Subway as mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_sub = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tracc_sub = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.tracc_sub = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.tracc_sub = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#     }
+#   }
 
-  dimension: tracc_pov {
-    label: "POV to Public Transit"
-    description: "Privately Owned Vehicle as mode used to get to
-public transit?"
-    case: {
+#   dimension: tracc_wlk {
+#     label: "Walking to Public Transit"
+#     description: "Walking as mode used to get to
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tracc_walk = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tracc_walk = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tracc_pov = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tracc_walk = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tracc_pov = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tracc_walk = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tracc_pov = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_pov = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
 
-  dimension: tracc_sub {
-    label: "Subway to Public Transit"
-    description: "Subway as mode used to get to
-public transit?"
-    case: {
-#       when: {
-#         sql: ${TABLE}.tracc_sub = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.tracc_sub = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.tracc_sub = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_sub = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tracc_wlk {
-    label: "Walking to Public Transit"
-    description: "Walking as mode used to get to
-public transit?"
-    case: {
-#       when: {
-#         sql: ${TABLE}.tracc_walk = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.tracc_walk = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.tracc_walk = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tracc_walk = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tracctm {
-    label: "Trip Time to Transit Station"
-    description: "Trip Time to Transit Station in Minutes"
-    sql: CASE
-    WHEN ${TABLE}.tracctm >= 0 THEN CAST(${TABLE}.tracctm AS STRING)
-    ELSE null END ;;
-    }
+#   dimension: tracctm {
+#     label: "Trip Time to Transit Station"
+#     description: "Trip Time to Transit Station in Minutes"
+#     sql: CASE
+#     WHEN ${TABLE}.tracctm >= 0 THEN CAST(${TABLE}.tracctm AS STRING)
+#     ELSE null END ;;
+#     }
 
   dimension: travday {
     label: "Weekday"
@@ -926,155 +926,155 @@ public transit?"
     }
   }
 
-  dimension: tregr_bus {
-    label: "Bus From Public Transit"
-    description: "Bus as mode used to get from
-public transit?"
-   case: {
+#   dimension: tregr_bus {
+#     label: "Bus From Public Transit"
+#     description: "Bus as mode used to get from
+# public transit?"
+#    case: {
+# #     when: {
+# #       sql: ${TABLE}.tregr_bus = -9 ;;
+# #       label: "Not ascertained"
+# #     }
+# #     when: {
+# #       sql: ${TABLE}.tregr_bus = -1 ;;
+# #       label: "Appropriate skip"
+# #     }
 #     when: {
-#       sql: ${TABLE}.tregr_bus = -9 ;;
-#       label: "Not ascertained"
+#       sql: ${TABLE}.tregr_bus = 1 ;;
+#       label: "Yes"
 #     }
 #     when: {
-#       sql: ${TABLE}.tregr_bus = -1 ;;
-#       label: "Appropriate skip"
+#       sql: ${TABLE}.tregr_bus = 2 ;;
+#       label: "No"
 #     }
-    when: {
-      sql: ${TABLE}.tregr_bus = 1 ;;
-      label: "Yes"
-    }
-    when: {
-      sql: ${TABLE}.tregr_bus = 2 ;;
-      label: "No"
-    }
-    else: "null"
-  }
-  }
+#     else: "null"
+#   }
+#   }
+#
+#   dimension: tregr_crl {
+#     label: "Rail From Public Transit"
+#     description: "Rail as mode used to get from
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tregr_crl = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tregr_crl = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.tregr_crl = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.tregr_crl = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#     }
+#   }
 
-  dimension: tregr_crl {
-    label: "Rail From Public Transit"
-    description: "Rail as mode used to get from
-public transit?"
-    case: {
+#   dimension: tregr_oth {
+#     label: "Other Mode From Public Transit"
+#     description: "Other mode used to get from
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tregr_oth = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tregr_oth = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tregr_crl = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tregr_oth = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tregr_crl = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tregr_oth = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tregr_crl = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tregr_crl = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tregr_oth {
-    label: "Other Mode From Public Transit"
-    description: "Other mode used to get from
-public transit?"
-    case: {
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: tregr_pov {
+#     label: "POV From Public Transit"
+#     description: "POV as mode used to get from
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tregr_pov = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tregr_pov = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tregr_oth = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.tregr_oth = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.tregr_oth = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tregr_oth = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tregr_pov {
-    label: "POV From Public Transit"
-    description: "POV as mode used to get from
-public transit?"
-    case: {
-#       when: {
-#         sql: ${TABLE}.tregr_pov = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tregr_pov = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tregr_pov = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tregr_pov = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tregr_pov = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tregr_pov = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tregr_sub {
-    label: "Subway From Public Transit"
-    description: "Subway as mode used to get from
-public transit?"
-    case: {
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: tregr_sub {
+#     label: "Subway From Public Transit"
+#     description: "Subway as mode used to get from
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tregr_sub = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tregr_sub = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
 #       when: {
-#         sql: ${TABLE}.tregr_sub = -9 ;;
-#         label: "Not ascertained"
-#       }
-#       when: {
-#         sql: ${TABLE}.tregr_sub = -1 ;;
-#         label: "Appropriate skip"
-#       }
-      when: {
-        sql: ${TABLE}.tregr_sub = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tregr_sub = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
-
-  dimension: tregr_wlk {
-    label: "Walking From Public Transit"
-    description: "Walking as mode used to get from
-public transit?"
-    case: {
-#       when: {
-#         sql: ${TABLE}.tregr_wlk = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.tregr_sub = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.tregr_wlk = -1 ;;
-#         label: "Appropriate skip"
+#         sql: ${TABLE}.tregr_sub = 2 ;;
+#         label: "No"
 #       }
-      when: {
-        sql: ${TABLE}.tregr_wlk = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.tregr_wlk = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
+#
+#   dimension: tregr_wlk {
+#     label: "Walking From Public Transit"
+#     description: "Walking as mode used to get from
+# public transit?"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.tregr_wlk = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.tregr_wlk = -1 ;;
+# #         label: "Appropriate skip"
+# #       }
+#       when: {
+#         sql: ${TABLE}.tregr_wlk = 1 ;;
+#         label: "Yes"
+#       }
+#       when: {
+#         sql: ${TABLE}.tregr_wlk = 2 ;;
+#         label: "No"
+#       }
+#       else: "null"
+#     }
+#   }
 
   dimension: cspv {
     label: "Car/SUV/Pickup/Van"
@@ -1082,14 +1082,14 @@ public transit?"
     sql:  ${trptrans} = 'Car' OR ${trptrans} = 'SUV' OR ${trptrans} = 'Pickup truck' OR ${trptrans} = 'Van' ;;
   }
 
-  dimension: tregrtm {
-    label: "Time to Destination From Transit"
-    description: "Time to Destination from
-Transit in Minutes"
-    sql: CASE
-    WHEN ${TABLE}.tregrtm >= 0 THEN CAST(${TABLE}.tregrtm AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: tregrtm {
+#     label: "Time to Destination From Transit"
+#     description: "Time to Destination from
+# Transit in Minutes"
+#     sql: CASE
+#     WHEN ${TABLE}.tregrtm >= 0 THEN CAST(${TABLE}.tregrtm AS STRING)
+#     ELSE null END ;;
+#   }
 
 #   dimension: trippurp {
 #     label: "Purpose of Trip"
@@ -1152,10 +1152,10 @@ from route geometry returned"
   }
 
    dimension: mph {
-    label: "Speed (miles per hour)"
+    label: "Speed (miles per min)"
     type: number
-    sql: (${trpmiles}/(${trvlcmin}/60));;
-    value_format: "0"
+    sql: ${trpmiles}/(${trvlcmin}*60);;
+    value_format: "0.00"
   }
 
   measure: average_mph {
@@ -1270,21 +1270,20 @@ from route geometry returned"
   }
 
   dimension: trvlcmin {
-    label: "Trip Duration"
-    description: "Trip Duration in Minutes"
+    label: "Trip Duration (minutes)"
     type: number
     sql: CASE
     WHEN ${TABLE}.trvlcmin >= 0 THEN ${TABLE}.trvlcmin
     ELSE null END ;;
   }
 
-  dimension: trwaittm {
-    label: "Transit Wait Time"
-    description: "Transit wait time in minutes"
-    sql: CASE
-    WHEN ${TABLE}.trwaittm >= 0 THEN CAST(${TABLE}.trwaittm AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: trwaittm {
+#     label: "Transit Wait Time"
+#     description: "Transit wait time in minutes"
+#     sql: CASE
+#     WHEN ${TABLE}.trwaittm >= 0 THEN CAST(${TABLE}.trwaittm AS STRING)
+#     ELSE null END ;;
+#   }
 
 #   dimension: urban {
 #     label:  "Urban Area Classification"
