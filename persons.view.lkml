@@ -493,10 +493,17 @@ view: persons {
 #     sql: ${TABLE}.DISTTOSC17 ;;
 #   }
 #
-#   dimension: disttowk17 {
-#     type: number
-#     sql: ${TABLE}.DISTTOWK17 ;;
-#   }
+  dimension: disttowk17 {
+    label: "Miles from home to work"
+    type: number
+    sql: CASE WHEN ${TABLE}.DISTTOWK17 >= 0 THEN ${TABLE}.DISTTOWK17 ELSE null END  ;;
+  }
+
+  dimension: tiered_distance_to_work {
+    type: tier
+    tiers: [0, 1, 2, 3, 4, 5, 10, 15, 20, 25]
+    sql: ${disttowk17} ;;
+  }
 
   dimension: driver {
     label: "Driver Status"
@@ -607,32 +614,32 @@ view: persons {
 #     sql:${TABLE}.gcdwork  ;;
 #     }
 
-  dimension: gt1_jblwk {
-    label: "More Than One Job"
-    case: {
+#   dimension: gt1_jblwk {
+#     label: "More Than One Job"
+#     case: {
+# #       when: {
+# #         sql: ${TABLE}.gt1_jblwk = -9 ;;
+# #         label: "Not ascertained"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.gt1_jblwk = -8 ;;
+# #         label: "I don't know"
+# #       }
+# #       when: {
+# #         sql: ${TABLE}.gt1_jblwk = -7 ;;
+# #         label: "I prefer not to answer"
+# #       }
 #       when: {
-#         sql: ${TABLE}.gt1_jblwk = -9 ;;
-#         label: "Not ascertained"
+#         sql: ${TABLE}.gt1_jblwk = 1 ;;
+#         label: "Yes"
 #       }
 #       when: {
-#         sql: ${TABLE}.gt1_jblwk = -8 ;;
-#         label: "I don't know"
+#         sql: ${TABLE}.gt1_jblwk = 2 ;;
+#         label: "No"
 #       }
-#       when: {
-#         sql: ${TABLE}.gt1_jblwk = -7 ;;
-#         label: "I prefer not to answer"
-#       }
-      when: {
-        sql: ${TABLE}.gt1_jblwk = 1 ;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${TABLE}.gt1_jblwk = 2 ;;
-        label: "No"
-      }
-      else: "null"
-    }
-  }
+#       else: "null"
+#     }
+#   }
 
 #   dimension: hbhtnrnt {
 #     description: "Category of the percent of renter-occupied housing in the census block group of the household's home location"
@@ -1285,6 +1292,7 @@ Work"
 #   }
 
   dimension: schtrn1 {
+    hidden: yes
     label: "Mode to School"
     case: {
 #       when: {
@@ -1392,6 +1400,7 @@ Work"
   }
 
   dimension: schtrn2 {
+    hidden: yes
     label: "Mode from School"
     case: {
 #       when: {
@@ -2167,7 +2176,7 @@ Home in Last Month"
     description: "Miles Personally Driven in all
 Vehicles"
     sql: CASE
-    WHEN ${TABLE}.yearmile >= 0 THEN CAST(${TABLE}.yearmile AS STRING)
+    WHEN ${TABLE}.yearmile >= 0 THEN ${TABLE}.yearmile
     ELSE null END ;;
   }
 

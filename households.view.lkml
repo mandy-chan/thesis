@@ -15,7 +15,6 @@ view: households {
     type: number
     sql: ${TABLE}.BUS ;;
   }
-
   dimension: car {
     type: number
     sql: ${TABLE}.CAR ;;
@@ -181,6 +180,10 @@ view: households {
     type: string
     map_layer_name: us_states
     sql: ${TABLE}.HHSTATE ;;
+    link: {
+      label: "State"
+      url: "/dashboards/353?State={{ _filters['households.state'] | url_encode }}"
+  }
   }
 
   dimension: hhstfips {
@@ -413,8 +416,14 @@ address is located"
   }
 
   dimension: urbrur {
-    type: number
-    sql: ${TABLE}.URBRUR ;;
+    label: "Rural or Urban"
+    case: {
+      when: {
+        sql: ${TABLE}.urbrur = 1 ;;
+        label: "Urban"
+      }
+      else: "Rural"
+    }
   }
 
   dimension: walk {

@@ -402,7 +402,7 @@ respondent's travel day"
     description: "Number of people on trip
 including respondent"
     sql: CASE
-    WHEN ${TABLE}.numontrp >= 0 THEN ${TABLE}.numontrp AS STRING
+    WHEN ${TABLE}.numontrp >= 0 THEN ${TABLE}.numontrp
     ELSE null END ;;
   }
 
@@ -1079,7 +1079,7 @@ record in the file"
   dimension: cspv {
     label: "Car/SUV/Pickup/Van"
     type: yesno
-    sql:  ${trptrans} = 'Car' OR ${trptrans} = 'SUV' OR ${trptrans} = 'Pickup truck' OR ${trptrans} = 'Van' ;;
+    sql:  ${trptrans} = 'Car' OR ${trptrans} = 'SUV' OR ${trptrans} = 'Pickup truck' OR ${trptrans} = 'Van';;
   }
 
 #   dimension: tregrtm {
@@ -1138,6 +1138,11 @@ from route geometry returned"
     sql: CASE
     WHEN ${TABLE}.trpmiles >= 0 THEN ${TABLE}.trpmiles
     ELSE null END ;;
+  }
+
+  measure: total_trip_miles {
+    type: sum
+    sql: ${trpmiles} ;;
   }
 
   dimension: trpmiles_tiered {
@@ -1275,6 +1280,11 @@ from route geometry returned"
     sql: CASE
     WHEN ${TABLE}.trvlcmin >= 0 THEN ${TABLE}.trvlcmin
     ELSE null END ;;
+  }
+
+  measure: total_trip_duration {
+    type: sum
+    sql: ${trvlcmin} ;;
   }
 
 #   dimension: trwaittm {
