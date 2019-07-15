@@ -1,31 +1,32 @@
 view: derived_person_cohort {
   derived_table: {
-    sql: SELECT households.houseid
-          FROM household_travel_data.households AS households
+    sql: SELECT trips.tdcaseid AS trips_id,
+                COUNT(*) as cohort_size
 
+          FROM household_travel_data.trips AS trips
+          LEFT JOIN household_travel_data.households AS households ON households.houseid = trips.houseid
           LEFT JOIN household_travel_data.persons AS persons ON households.houseid = persons.houseid
-          LEFT JOIN household_travel_data.trips AS trips ON households.houseid = trips.houseid
-              AND persons.personid = trips.personid
+            AND persons.personid = trips.personid
           LEFT JOIN household_travel_data.vehicles AS vehicles ON households.houseid = vehicles.houseid
               AND persons.personid = vehicles.personid
 
-          WHERE ({% condition filter_travday %} trips.travday {% endcondition %})
+          WHERE ({% condition filter_miles %} trips.trpmiles {% endcondition %})
             AND ({% condition filter_trptrans %} trips.trptrans {% endcondition %})
           GROUP BY 1;;
 }
 
-dimension: h_id {
+dimension: trips_id {
   hidden: yes
   primary_key: yes
-  description: "Unique ID for each user that has ordered"
+  description: "Unique trip ID"
   type: number
-  sql: ${TABLE}.houseid ;;
+  sql: ${TABLE}.trips_id ;;
 }
 
-filter: filter_travday {
+filter: filter_miles {
   description: "Travel Day to filter cohort - filter on all users that purchased this Travel Day"
   type: number
-  suggest_dimension: trips.travday
+  suggest_dimension: trips.trpmiles
 }
 
 filter: filter_trptrans {
@@ -35,13 +36,37 @@ filter: filter_trptrans {
   suggest_dimension: trips.trptrans
 }
 
+  dimension: cohort_size {
+    type: number
+  }
 
+  measure: total_cohort_size {
+    type: sum
+    sql: ${cohort_size} ;;
+  }
 
-# filter: cohort_filter_brand_name {
-#   description: "Brand Name to filter cohort - filter on all users that purchased this brand"
-#   type: string
-#   suggest_explore: products
-#   suggest_dimension: products.brand_name
-# }
+  measure: total_revenue_over_total_cohort_size {
+    type: number
+    sql: ${trips.total_trip_miles}/ ${total_cohort_size} ;;
+    value_format: "0"
+  }
 
+  parameter: measure_picker {
+    type: string
+    allowed_value: { value: "Car" }
+    allowed_value: { value: "SUV" }
+    allowed_value: { value: "Walk" }
+    allowed_value: { value: "Bike" }
+  }
+
+  measure: cohort_values {
+    type: number
+    hidden: yes
+    sql: CASE WHEN {% parameter measure_picker %} = 'Car' THEN ${trips.trpmiles}
+        WHEN {% parameter measure_picker %} = 'SUV' THEN ${total_cohort_size}
+        WHEN {% parameter measure_picker %} = 'Walk' THEN ${total_revenue_over_total_cohort_size}
+        WHEN {% parameter measure_picker %} = 'Bike' THEN ${cohort_size}
+        ELSE 0
+      END ;;
+  }
 }

@@ -939,9 +939,16 @@ view: persons {
   dimension: nocong {
     label: "Minutes to Work Without Traffic"
     description: "Trip Time in Minutes to Work without Traffic"
+    type: number
     sql: CASE
-    WHEN ${TABLE}.nocong >= 0 THEN CAST(${TABLE}.nocong AS STRING)
-    ELSE NULL END ;;
+    WHEN ${TABLE}.nocong >= 0 THEN ${TABLE}.nocong END ;;
+  }
+
+  dimension: minutes_to_work_without_traffic_tiered{
+    type: tier
+    tiers: [0, 5, 10, 15, 20, 25, 30, 35, 40]
+    style: integer
+    sql: ${nocong} ;;
   }
 
 #   dimension: numadlt {
@@ -2161,7 +2168,7 @@ Home in Last Month"
         sql: ${TABLE}.wrktrans = 97 ;;
         label: "Something else"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 

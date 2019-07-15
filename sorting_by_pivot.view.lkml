@@ -3,12 +3,11 @@ view: sorting_by_pivot {
     sql_trigger_value: SELECT 1 ;;
     sql:
     SELECT
-    trips.tdcaseid AS trip_id,
-    trips.trvlcmin AS trip_duration_min,
-    COUNT(trips.strttime) AS count_of_trips, /* Included for clarity */
-    DENSE_RANK() OVER (ORDER BY COUNT(trips.strttime) ASC) AS ranking
-    FROM household_travel_data.trips AS trips
-    WHERE trips.trvlcmin > 0
+    households.houseid AS houseid,
+    households.hhvehcnt AS count_of_households_vehicle,
+    COUNT(households.hhvehcnt) AS count_of_trips, /* Included for clarity */
+    DENSE_RANK() OVER (ORDER BY households.hhvehcnt ASC) AS ranking
+    FROM household_travel_data.households AS households
 
     GROUP BY 1,2
     ORDER BY 2 DESC
@@ -22,16 +21,16 @@ view: sorting_by_pivot {
       drill_fields: [detail*]
     }
 
-    dimension: trip_id {
+    dimension: houseid {
       primary_key: yes
       hidden: yes
       type: number
-      sql: ${TABLE}.trip_id ;;
+      sql: ${TABLE}.houseid ;;
     }
 
-    dimension: trip_duration_min {
+    dimension: count_of_households_vehicle {
       type: string
-      sql: ${TABLE}.trip_duration_min ;;
+      sql: ${TABLE}.count_of_households_vehicle ;;
     }
 
     dimension: count_of_trips {
@@ -45,7 +44,7 @@ view: sorting_by_pivot {
     }
 
     set: detail {
-      fields: [trip_duration_min, count_of_trips, ranking]
+      fields: [count_of_households_vehicle, count_of_trips, ranking]
     }
 
 }

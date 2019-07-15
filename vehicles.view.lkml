@@ -116,7 +116,7 @@ view: vehicles {
         sql: ${TABLE}.fueltype = 97 ;;
         label: "Some other fuel"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 
@@ -391,7 +391,7 @@ view: vehicles {
     description: "Age of vehicle, based on
 model year"
     sql: CASE
-    WHEN ${TABLE}.vehage >= 0 THEN CAST(${TABLE}.vehage AS STRING)
+    WHEN ${TABLE}.vehage >= 0 THEN ${TABLE}.vehage
     ELSE null END ;;
   }
 
@@ -432,13 +432,13 @@ Year"
     }
   }
 
-  dimension: vehownmo {
-    label: "Vehicle Ownership (months)"
-    description: "Months of Vehicle Ownership"
-    sql: CASE
-    WHEN ${TABLE}.vehownmo >=0 THEN CAST(${TABLE}.vehownmo AS STRING)
-    ELSE null END ;;
-  }
+#   dimension: vehownmo {
+#     label: "Vehicle Ownership (months)"
+#     description: "Months of Vehicle Ownership"
+#     sql: CASE
+#     WHEN ${TABLE}.vehownmo >=0 THEN CAST(${TABLE}.vehownmo AS STRING)
+#     ELSE null END ;;
+#   }
 
   dimension: vehtype {
     label: "Vehicle Type"
@@ -483,7 +483,7 @@ Year"
         sql: ${TABLE}.vehtype = 97 ;;
         label: "Something else"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 

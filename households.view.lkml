@@ -128,7 +128,7 @@ view: households {
         sql: ${TABLE}.hhfaminc = 11 ;;
         label: ">$200,000"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 

@@ -401,9 +401,9 @@ respondent's travel day"
     label: "Number of People on Trips"
     description: "Number of people on trip
 including respondent"
+    type:  number
     sql: CASE
-    WHEN ${TABLE}.numontrp >= 0 THEN ${TABLE}.numontrp
-    ELSE null END ;;
+    WHEN ${TABLE}.numontrp >= 0 THEN ${TABLE}.numontrp END ;;
   }
 
 #   dimension: numtrans {
@@ -1282,9 +1282,10 @@ from route geometry returned"
     ELSE null END ;;
   }
 
-  measure: total_trip_duration {
-    type: sum
-    sql: ${trvlcmin} ;;
+  measure: average_trip_duration {
+    type: average
+    sql: ${trvlcmin};;
+    value_format: "0"
   }
 
 #   dimension: trwaittm {

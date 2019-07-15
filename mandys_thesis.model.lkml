@@ -58,13 +58,13 @@ explore: national_household_travel_data {
     view_label: "Cohort Filters"
     type: inner
     relationship: one_to_one
-    sql_on: ${households.houseid} = ${derived_person_cohort.h_id};;
+    sql_on: ${trips.tdcaseid} = ${derived_person_cohort.trips_id};;
   }
 
   join: sorting_by_pivot {
     type: inner
     relationship: one_to_one
-    sql_on: ${trips.tdcaseid} = ${sorting_by_pivot.trip_id} ;;
+    sql_on: ${households.houseid} = ${sorting_by_pivot.houseid} ;;
   }
 
 }
