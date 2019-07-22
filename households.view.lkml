@@ -182,7 +182,7 @@ view: households {
     sql: ${TABLE}.HHSTATE ;;
     link: {
       label: "State"
-      url: "/dashboards/353?State={{ _filters['households.state'] | url_encode }}"
+      url: "/dashboards/354?State={{ value | url_encode }}"
   }
   }
 
@@ -451,13 +451,15 @@ address is located"
     sql: ${TABLE}.WTHHFIN ;;
   }
 
+  measure: count_household {
+    type: sum
+    sql: ${wthhfin} ;;
+    value_format: "0"
+  }
+
   dimension: youngchild {
     type: number
     sql: ${TABLE}.YOUNGCHILD ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
 }

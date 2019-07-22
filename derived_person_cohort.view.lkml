@@ -45,12 +45,6 @@ filter: filter_trptrans {
     sql: ${cohort_size} ;;
   }
 
-  measure: total_revenue_over_total_cohort_size {
-    type: number
-    sql: ${trips.total_trip_miles}/ ${total_cohort_size} ;;
-    value_format: "0"
-  }
-
   parameter: measure_picker {
     type: string
     allowed_value: { value: "Car" }
@@ -64,7 +58,6 @@ filter: filter_trptrans {
     hidden: yes
     sql: CASE WHEN {% parameter measure_picker %} = 'Car' THEN ${trips.trpmiles}
         WHEN {% parameter measure_picker %} = 'SUV' THEN ${total_cohort_size}
-        WHEN {% parameter measure_picker %} = 'Walk' THEN ${total_revenue_over_total_cohort_size}
         WHEN {% parameter measure_picker %} = 'Bike' THEN ${cohort_size}
         ELSE 0
       END ;;

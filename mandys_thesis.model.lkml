@@ -13,6 +13,7 @@ persist_with: mandys_thesis_default_datagroup
 
 explore: national_household_travel_data {
   view_name: households
+    sql_always_where: ${trips.trvlcmin} > 0 ;;
 #   sql_always_where: ${households.hhfaminc} != "null" OR
 #                     ${trips.whyto} != "null" OR
 #                     ${households.price} != "null" OR
@@ -42,12 +43,6 @@ explore: national_household_travel_data {
     sql_on: ${households.houseid} = ${trips.houseid} AND ${persons.personid} = ${trips.personid} ;;
   }
 
-  join: average_speed_ndt {
-    type: left_outer
-    sql_on: ${average_speed_ndt.tdcaseid} = ${trips.tdcaseid} ;;
-    relationship: one_to_one
-  }
-
   join: vehicles {
     type: left_outer
     relationship: one_to_many
@@ -61,10 +56,42 @@ explore: national_household_travel_data {
     sql_on: ${trips.tdcaseid} = ${derived_person_cohort.trips_id};;
   }
 
-  join: sorting_by_pivot {
+  join: avg_mph_per_trip_mode {
     type: inner
     relationship: one_to_one
-    sql_on: ${households.houseid} = ${sorting_by_pivot.houseid} ;;
+    sql_on: ${trips.tdcaseid} = ${avg_mph_per_trip_mode.tdcaseid} ;;
   }
+
+  join: avg_distance_per_trip_mode {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${trips.tdcaseid} = ${avg_distance_per_trip_mode.tdcaseid} ;;
+  }
+
+  join: avg_duration_per_trip_mode {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${trips.tdcaseid} = ${avg_duration_per_trip_mode.tdcaseid} ;;
+  }
+
+#   join: count_trips {
+#     view_label: "Count"
+#     type: cross
+#   }
+#
+#   join: count_households {
+#     view_label: "Count"
+#     type: cross
+#   }
+#
+#   join: count_persons {
+#     view_label: "Count"
+#     type: cross
+#   }
+#
+#   join: count_vehicles {
+#     view_label: "Count"
+#     type: cross
+#   }
 
 }

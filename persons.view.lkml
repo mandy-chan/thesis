@@ -569,7 +569,7 @@ view: persons {
         sql: ${TABLE}.educ = 5 ;;
         label: "Graduate degree or professional degree"
       }
-      else: "null"
+      else: "n/a"
 
     }
   }
@@ -597,7 +597,7 @@ view: persons {
         sql: ${TABLE}.flextime = 2 ;;
         label: "No"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 
@@ -884,7 +884,7 @@ view: persons {
         sql: ${TABLE}.medcond = 2 ;;
         label: "No"
       }
-      else: "null"
+      else: "n/a"
     }
   }
 
@@ -1561,9 +1561,9 @@ Work"
   dimension: timetowk {
     label: "Trip Time to Work"
     description: "Trip Time to Work in Minutes"
+    type: number
     sql: CASE
-    WHEN ${TABLE}.timetowk >= 0 THEN CAST(${TABLE}.timetowk AS STRING)
-    ELSE null END ;;
+    WHEN ${TABLE}.timetowk >= 0 THEN ${TABLE}.timetowk END ;;
   }
 #   dimension: travday {
 #     label: "Weekday"
@@ -2057,12 +2057,8 @@ Home in Last Month"
 
   dimension: wrktime {
     label: "Arrival Time at Work"
-    sql: CASE WHEN ${TABLE}.wrktime != "-9" AND
-                    ${TABLE}.wrktime != "-8" AND
-                    ${TABLE}.wrktime != "-7" AND
-                    ${TABLE}.wrktime != "-1"
-               THEN ${TABLE}.wrktime ELSE "null" END  ;;
-  }
+    sql: ${TABLE}.wrktime ;;
+        }
 
 
   dimension: wrktrans {
@@ -2172,11 +2168,11 @@ Home in Last Month"
     }
   }
 
-#   dimension: wtperfin {
-#     description: "Final Person weight"
-#     type: number
-#     sql: ${TABLE}.WTPERFIN ;;
-#   }
+  dimension: wtperfin {
+    description: "Final Person weight"
+    type: number
+    sql: ${TABLE}.WTPERFIN ;;
+  }
 
   dimension: yearmile {
     label: "Miles Driven"
@@ -2195,8 +2191,9 @@ Vehicles"
 #     ELSE null END ;;
 #   }
 
-  measure: count {
-    type: count
-    drill_fields: [personid, vehicles.count, trips.count]
+  measure: count_persons {
+    type: sum
+    sql: ${wtperfin};;
+    value_format: "0"
   }
 }

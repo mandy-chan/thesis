@@ -506,8 +506,14 @@ Year"
 #     sql: ${TABLE}.WRKCOUNT ;;
 #   }
 
-  measure: count {
-    type: count
-    drill_fields: [persons.personid]
+  dimension: WTHHFIN {
+    type: number
+    sql: ${TABLE}.WTHHFIN ;;
+  }
+
+  measure: count_vehicle {
+    type: sum
+    sql: ${WTHHFIN} ;;
+    value_format: "0"
   }
 }
