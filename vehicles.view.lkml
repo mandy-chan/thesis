@@ -49,17 +49,11 @@ view: vehicles {
   dimension: bestmile {
     label: "Annual Miles (Estimate)"
     description: "Best estimate of annual miles"
+    type: number
     sql: CASE
-    WHEN ${TABLE}.bestmile >= 0 THEN ${TABLE}.bestmile
-    ELSE null END ;;
+    WHEN ${TABLE}.bestmile >= 0 THEN ${TABLE}.bestmile END ;;
   }
 
-  measure: average_bestmiles {
-    label: "Average of Miles Driven"
-    type: average
-    sql: ${bestmile} ;;
-    value_format: "0.00"
-  }
 
 #   dimension: cdivmsar {
 #     label: "Household Grouping"
@@ -515,5 +509,6 @@ Year"
     type: sum
     sql: ${WTHHFIN} ;;
     value_format: "0"
+    drill_fields: [vehid, vehtype, vehage, bestmile]
   }
 }

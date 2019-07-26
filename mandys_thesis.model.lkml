@@ -49,13 +49,6 @@ explore: national_household_travel_data {
     sql_on: ${households.houseid} = ${vehicles.houseid} AND ${persons.personid} = ${vehicles.personid} ;;
   }
 
-  join: derived_person_cohort {
-    view_label: "Cohort Filters"
-    type: inner
-    relationship: one_to_one
-    sql_on: ${trips.tdcaseid} = ${derived_person_cohort.trips_id};;
-  }
-
   join: avg_mph_per_trip_mode {
     type: inner
     relationship: one_to_one
@@ -73,25 +66,5 @@ explore: national_household_travel_data {
     relationship: one_to_one
     sql_on: ${trips.tdcaseid} = ${avg_duration_per_trip_mode.tdcaseid} ;;
   }
-
-#   join: count_trips {
-#     view_label: "Count"
-#     type: cross
-#   }
-#
-#   join: count_households {
-#     view_label: "Count"
-#     type: cross
-#   }
-#
-#   join: count_persons {
-#     view_label: "Count"
-#     type: cross
-#   }
-#
-#   join: count_vehicles {
-#     view_label: "Count"
-#     type: cross
-#   }
 
 }

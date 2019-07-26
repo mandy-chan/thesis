@@ -8,15 +8,16 @@ view: avg_mph_per_trip_mode{
     trips.WTTRDFIN,
     trips.trvlcmin,
     trips.trptrans,
+    trips.strttime,
     (SUM(trips.trpmiles*WTTRDFIN))/(SUM(trips.WTTRDFIN)) AS weight_miles,
     (SUM((trips.trvlcmin/60)*WTTRDFIN))/(SUM(trips.WTTRDFIN)) AS weight_minutes,
     AVG(((SUM(trips.trpmiles*WTTRDFIN))/(SUM(trips.WTTRDFIN))) / ((SUM((trips.trvlcmin/60)*WTTRDFIN))/(SUM(trips.WTTRDFIN)))) OVER
-    (PARTITION BY trips.trptrans ORDER BY trips.trptrans ASC) AS average_mph_per_trip_mode
+    (PARTITION BY trips.strttime ORDER BY trips.strttime ASC) AS average_mph_per_trip_mode
     FROM household_travel_data.trips AS trips
 
     WHERE trips.trvlcmin > 0 AND trips.trptrans > 0
 
-    GROUP BY 1,2,3,4,5
+    GROUP BY 1,2,3,4,5,6
     ORDER BY 6 ASC
 
     ;;
