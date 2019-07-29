@@ -1092,7 +1092,7 @@ from route geometry returned"
   dimension: trpmiles_tiered {
     label: "Trip Miles, Tiered"
     type: tier
-    tiers: [0, 0.5, 1, 2, 3, 4, 5, 6]
+    tiers: [0, 0.5, 0.75, 1, 2, 3, 4, 5]
     style: interval
     sql: CASE
     WHEN ${TABLE}.trpmiles >= 0 THEN ${TABLE}.trpmiles END ;;
